@@ -1,4 +1,6 @@
 import { useCart } from "../../hooks/cartHook";
+import { getParsedPrice } from "../../utils/parsePriceToLocalePrice";
+import { CartProduct } from "./Product";
 
 export function Cart() {
   const { isCartVisible, handleToggleCart, products } = useCart();
@@ -19,19 +21,33 @@ export function Cart() {
         </button>
       </header>
 
-      <div className="flex-1">
-        {products.map((product) => (
-          <div>
-            <h1>{product.name}</h1>
-            <span>{product.price}</span>
+      <div
+        className={`flex-1 ${
+          !products.length ? "flex items-center justify-center" : ""
+        }`}
+      >
+        {products.length ? (
+          <>
+            {products.map((product) => (
+              <CartProduct product={product} key={product.id} />
+            ))}
+          </>
+        ) : (
+          <div className="text-gray-50">
+            <span>Empty Cart</span>
           </div>
-        ))}
+        )}
       </div>
 
       <footer className="text-right">
         <span className="">
           Total:{" "}
-          {products.reduce((acc, product) => acc + product.price, 0).toFixed(2)}
+          {getParsedPrice(
+            products.reduce(
+              (acc, product) => acc + product.price * product.quantity,
+              0
+            )
+          )}
         </span>
       </footer>
     </div>

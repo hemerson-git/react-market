@@ -1,4 +1,5 @@
 import { useCart } from "../../hooks/cartHook";
+import { getParsedPrice } from "../../utils/parsePriceToLocalePrice";
 
 export type ProductProps = {
   id: string;
@@ -24,7 +25,7 @@ export function Product({
       <h3 className="text-bold text-lg mt-2 mb-3">{name}</h3>
 
       <span className="text-sm flex">{description}</span>
-      <span className="">${price}</span>
+      <span className="">{getParsedPrice(price)}</span>
 
       <footer className="flex flex-col mt-4">
         <button
