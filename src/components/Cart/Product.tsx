@@ -19,6 +19,7 @@ export function CartProduct({ product }: Props) {
     handleAddQuantityProduct,
     handleDecreaseQuantityProduct,
     handleRemoveProduct,
+    handleSetQuantity,
   } = useCart();
 
   return (
@@ -47,6 +48,9 @@ export function CartProduct({ product }: Props) {
           <input
             type="number"
             value={product.quantity}
+            onChange={(e) =>
+              handleSetQuantity(product.id, Number(e.target.value))
+            }
             className="text-zinc-900 text-center"
           />
 
