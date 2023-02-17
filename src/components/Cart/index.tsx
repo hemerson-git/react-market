@@ -9,7 +9,7 @@ export function Cart() {
 
   return (
     <div
-      className={`w-full flex flex-col max-w-md pt-5 px-6 bg-zinc-700 z-50 top-0 bottom-0 fixed transition-all ${
+      className={`w-full flex flex-col max-w-md pt-5 px-6 pb-8 bg-zinc-700 z-50 top-0 bottom-0 fixed transition-all ${
         isCartVisible ? "right-0" : "left-full"
       }`}
     >
