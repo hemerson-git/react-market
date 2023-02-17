@@ -27,7 +27,7 @@ export function CartProduct({ product }: Props) {
       <img
         src={product.imageURL}
         alt={product.name}
-        className="h-14 w-14 rounded-md"
+        className="h-14 w-14 rounded-md object-cover"
       />
 
       <div>

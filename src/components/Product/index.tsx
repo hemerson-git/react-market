@@ -20,7 +20,7 @@ export function Product({
 
   return (
     <div>
-      <img src={imageURL} alt={name} />
+      <img src={imageURL} alt={name} className="h-48 object-cover" />
 
       <h3 className="text-bold text-lg mt-2 mb-3">{name}</h3>
 

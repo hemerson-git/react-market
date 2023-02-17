@@ -2,6 +2,7 @@ import { Cart } from "./components/Cart";
 import { Header } from "./components/Header";
 import { Product } from "./components/Product";
 import { CartProvider } from "./contexts/CartContext.";
+import { Footer } from "./components/footer";
 
 const products = [
   {
@@ -9,42 +10,42 @@ const products = [
     name: "Product 1",
     description: "lorem ipsum dolor sit amet",
     price: 20000,
-    imageURL: "https://github.com/hemerson-git.png",
+    imageURL: "/src/assets/camera.jpg",
   },
   {
     id: "2",
     name: "Product 2",
     description: "lorem ipsum dolor sit amet",
     price: 30000,
-    imageURL: "https://github.com/hemerson-git.png",
+    imageURL: "/src/assets/mobile.jpg",
   },
   {
     id: "3",
     name: "Product 3",
     description: "lorem ipsum dolor sit amet",
     price: 40050,
-    imageURL: "https://github.com/hemerson-git.png",
+    imageURL: "/src/assets/headset.jpg",
   },
   {
     id: "4",
     name: "Product 4",
     description: "lorem ipsum dolor sit amet",
     price: 45000,
-    imageURL: "https://github.com/hemerson-git.png",
+    imageURL: "/src/assets/laptop.jpg",
   },
   {
     id: "5",
     name: "Product 5",
     description: "lorem ipsum dolor sit amet",
     price: 50075,
-    imageURL: "https://github.com/hemerson-git.png",
+    imageURL: "/src/assets/microfone.jpg",
   },
   {
     id: "6",
     name: "Product 6",
     description: "lorem ipsum dolor sit amet",
-    price: 100,
-    imageURL: "https://github.com/hemerson-git.png",
+    price: 100000,
+    imageURL: "/src/assets/console.jpg",
   },
 ];
 
@@ -56,9 +57,11 @@ function App() {
 
         <main className="flex justify-center py-4">
           <div className="container px-14">
-            <div className="grid grid-cols-4 gap-4">
+            <h2 className="text-bold text-center text-2xl mb-6">Products</h2>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 gap-y-8">
               {products.map((product) => (
-                <Product product={product} />
+                <Product product={product} key={product.id} />
               ))}
             </div>
           </div>
@@ -67,6 +70,8 @@ function App() {
         <aside>
           <Cart />
         </aside>
+
+        <Footer />
       </div>
     </CartProvider>
   );

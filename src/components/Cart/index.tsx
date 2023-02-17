@@ -1,23 +1,24 @@
+import { X } from "phosphor-react";
+
+import { CartProduct } from "./Product";
 import { useCart } from "../../hooks/cartHook";
 import { getParsedPrice } from "../../utils/parsePriceToLocalePrice";
-import { CartProduct } from "./Product";
 
 export function Cart() {
   const { isCartVisible, handleToggleCart, products } = useCart();
 
-  console.log(isCartVisible);
-
   return (
     <div
-      className={`w-full flex flex-col max-w-md pt-5 px-6 pb-8 bg-zinc-700 z-50 top-0 bottom-0 fixed transition-all ${
-        isCartVisible ? "right-0" : "left-full"
-      }`}
+      className={`w-full flex flex-col max-w-md pt-5 px-6 pb-8 bg-zinc-700 z-auto 
+        top-0 bottom-0 fixed transition-all ${
+          isCartVisible ? "right-0" : "left-full"
+        }`}
     >
       <header className="relative">
         <h2 className="text-center text-lg">Cart</h2>
 
         <button onClick={handleToggleCart} className="absolute top-0 right-4">
-          X
+          <X size={24} className="text-gray-50" />
         </button>
       </header>
 
