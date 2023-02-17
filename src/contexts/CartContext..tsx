@@ -1,5 +1,5 @@
-import { createContext, ReactNode, useState } from "react";
-import { CartProductProps } from "../components/Cart/Product";
+import { createContext, ReactNode, useEffect, useState } from "react";
+import { CartProduct, CartProductProps } from "../components/Cart/Product";
 import { ProductProps } from "../components/Product";
 
 type CartContextProps = {
@@ -22,6 +22,15 @@ type CartProviderProps = {
 export function CartProvider({ children }: CartProviderProps) {
   const [isCartVisible, setIsCartVisible] = useState(false);
   const [products, setProducts] = useState<CartProductProps[]>([]);
+
+  useEffect(() => {
+    const items = localStorage.getItem("HoMarket");
+
+    if (items) {
+      const parsedItems = JSON.parse(items) as CartProductProps[];
+      setProducts(parsedItems);
+    }
+  }, []);
 
   function handleToggleCart() {
     setIsCartVisible(!isCartVisible);
@@ -53,7 +62,7 @@ export function CartProvider({ children }: CartProviderProps) {
       quantity: 1,
     };
     setProducts((prevItems) => [...prevItems, newProduct]);
-    localStorage.setItem("HoMarket", JSON.stringify(products));
+    localStorage.setItem("HoMarket", JSON.stringify([...products, newProduct]));
   }
 
   function handleAddQuantityProduct(product: CartProductProps) {
@@ -69,6 +78,7 @@ export function CartProvider({ children }: CartProviderProps) {
     });
 
     setProducts(updatedProducts);
+    localStorage.setItem("HoMarket", JSON.stringify(updatedProducts));
   }
 
   function handleDecreaseQuantityProduct(product: CartProductProps) {
@@ -92,11 +102,13 @@ export function CartProvider({ children }: CartProviderProps) {
     });
 
     setProducts(updatedProducts);
+    localStorage.setItem("HoMarket", JSON.stringify(updatedProducts));
   }
 
   function handleRemoveProduct(id: string) {
     const updatedProducts = products.filter((item) => item.id !== id);
     setProducts(updatedProducts);
+    localStorage.setItem("HoMarket", JSON.stringify(updatedProducts));
   }
 
   function handleSetQuantity(id: string, quantity: number) {
@@ -114,6 +126,7 @@ export function CartProvider({ children }: CartProviderProps) {
     });
 
     setProducts(updatedProducts);
+    localStorage.setItem("HoMarket", JSON.stringify(updatedProducts));
   }
 
   return (
