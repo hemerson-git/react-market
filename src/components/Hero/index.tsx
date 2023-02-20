@@ -31,7 +31,7 @@ export function Hero() {
               before:top-0 before:left-0 before:bg-black before:w-full before:h-full"
           >
             <img
-              src="/src/assets/laptop.jpg"
+              src="/laptop.jpg"
               alt="Image of a laptop with a mac logo on it"
               className="max-h-full w-full object-cover object-center"
             />
@@ -46,14 +46,14 @@ export function Hero() {
                 <div className="flex flex-col">
                   <h2 className="font-bold text-2xl mb-4">Lorem Ipsum</h2>
 
-                  <p className="mb-4">
+                  <p className="mb-6">
                     Lorem ipsum dolor sit amet consectetur, adipisicing elit.
                     Consequatur qui porro quidem eos dolorum, tenetur odio
                     dignissimos rerum, temporibus quibusdam expedita ea
                     recusandae natus atque, quod dicta delectus quia ipsa!
                   </p>
 
-                  <Button>Hello</Button>
+                  <Button className="max-w-xs">Hello</Button>
                 </div>
               </div>
             </div>

@@ -23,7 +23,7 @@ export function Toast({
         open={isOpen}
         onOpenChange={onOpenChange}
         className="
-          fixed bottom-0 right-0 flex flex-col p-4 gap-2 z-[200]
+          fixed bottom-4 right-4 flex flex-col p-4 gap-2 z-[200] 
           w-[320px] max-w-[100vh] bg-green-200 text-gray-700 rounded-md
         "
       >
@@ -36,7 +36,7 @@ export function Toast({
 
         <PrimitiveToast.Description>{description}</PrimitiveToast.Description>
 
-        <PrimitiveToast.Action altText="" />
+        <PrimitiveToast.Action altText={description} />
 
         <PrimitiveToast.Close className="absolute right-4">
           <X size={18} className="text-red-500" />
