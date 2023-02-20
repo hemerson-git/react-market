@@ -2,7 +2,8 @@ import { Cart } from "./components/Cart";
 import { Header } from "./components/Header";
 import { Product } from "./components/Product";
 import { CartProvider } from "./contexts/CartContext.";
-import { Footer } from "./components/footer";
+import { Footer } from "./components/Footer";
+import { Hero } from "./components/Hero";
 
 const products = [
   {
@@ -55,11 +56,12 @@ function App() {
       <div className="bg-zinc-900 min-h-screen text-gray-50">
         <Header />
 
+        <Hero />
         <main className="flex justify-center py-4">
           <div className="container px-14">
             <h2 className="text-bold text-center text-2xl mb-6">Products</h2>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 gap-y-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 gap-y-8 mb-10">
               {products.map((product) => (
                 <Product product={product} key={product.id} />
               ))}
@@ -67,9 +69,7 @@ function App() {
           </div>
         </main>
 
-        <aside>
-          <Cart />
-        </aside>
+        <aside>{/* <Cart /> */}</aside>
 
         <Footer />
       </div>

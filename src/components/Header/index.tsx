@@ -1,10 +1,12 @@
 import { RefObject, useEffect, useRef, useState } from "react";
 import { ShoppingCart, List, X } from "phosphor-react";
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
+import * as Dialog from "@radix-ui/react-dialog";
 
 // Components
 import { useCart } from "../../hooks/cartHook";
 import { Menu } from "./Menu";
+import { Cart } from "../Cart";
 
 const menuItems = [
   {
@@ -26,7 +28,7 @@ const menuItems = [
 ];
 
 export function Header() {
-  const { handleToggleCart, products } = useCart();
+  const { handleToggleCart, products, isCartVisible } = useCart();
   const [isMenuVisible, setIsMenuVisible] = useState(false);
   const headerRef = useRef() as RefObject<HTMLElement>;
 
@@ -40,7 +42,7 @@ export function Header() {
       ref={headerRef}
     >
       <div className="container px-14 flex justify-between py-6">
-        <h2 className="text-bold text-xl">Logo</h2>
+        <h2 className="text-bold text-xl select-none uppercase">Logo</h2>
 
         <DropdownMenu.Root open={isMenuVisible} onOpenChange={setIsMenuVisible}>
           <DropdownMenu.Trigger
@@ -76,32 +78,30 @@ export function Header() {
         >
           <nav>
             <ul className="flex flex-col gap-2 md:flex-row">
-              <li>
-                <a href="/">Home</a>
-              </li>
-
-              <li>
-                <a href="/">Products</a>
-              </li>
-
-              <li>
-                <a href="/">About</a>
-              </li>
-
-              <li>
-                <a href="/">Contact</a>
-              </li>
+              {menuItems.map((menuItem, index) => (
+                <li key={`item-${index}`}>
+                  <a href={menuItem.href}>{menuItem.label}</a>
+                </li>
+              ))}
             </ul>
           </nav>
 
-          <button
-            onClick={() => {
-              handleToggleCart();
-            }}
-            className="flex items-center gap-2"
+          <Dialog.Root
+            open={isCartVisible}
+            onOpenChange={handleToggleCart}
+            modal
           >
-            <ShoppingCart size={24} />({products.length})
-          </button>
+            <Dialog.Trigger
+              onClick={() => {
+                handleToggleCart();
+              }}
+              className="flex items-center gap-2"
+            >
+              <ShoppingCart size={24} />({products.length})
+            </Dialog.Trigger>
+
+            <Cart />
+          </Dialog.Root>
         </div>
       </div>
     </header>
