@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import { useCart } from "@/hooks/cartHook";
 import { Minus, Plus } from "phosphor-react";
 import { getParsedPrice } from "@/utils/parsePriceToLocalePrice";
+import { Button } from "@/components/Button";
 
 export default function Product() {
   const router = useRouter();
@@ -12,6 +13,7 @@ export default function Product() {
     handleDecreaseQuantityProduct,
     handleSetQuantity,
     getProductQuantity,
+    handleAddProduct,
   } = useCart();
 
   const product = {
@@ -50,9 +52,9 @@ export default function Product() {
               <button
                 type="button"
                 className="rounded-l-md bg-purple-400 p-1"
-                onClick={() => handleAddQuantityProduct(product.id)}
+                onClick={() => handleDecreaseQuantityProduct(product.id)}
               >
-                <Plus size={24} className="text-gray-50" />
+                <Minus size={24} className="text-gray-50" />
               </button>
 
               <input
@@ -67,9 +69,9 @@ export default function Product() {
               <button
                 type="button"
                 className="rounded-r-md bg-purple-400 p-1"
-                onClick={() => handleDecreaseQuantityProduct(product.id)}
+                onClick={() => handleAddQuantityProduct(product.id)}
               >
-                <Minus size={24} className="text-gray-50" />
+                <Plus size={24} className="text-gray-50" />
               </button>
             </div>
           </div>
@@ -80,6 +82,10 @@ export default function Product() {
               {getParsedPrice(product.price * getProductQuantity(product.id))}
             </span>
           </div>
+
+          <Button onClick={() => handleAddProduct(product)}>
+            Order Product
+          </Button>
         </div>
       </div>
     </div>

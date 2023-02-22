@@ -7,8 +7,8 @@ type CartContextProps = {
   isCartVisible: boolean;
   handleAddProduct: (product: ProductProps) => void;
   products: CartProductProps[];
-  handleAddQuantityProduct: (product: CartProductProps) => void;
-  handleDecreaseQuantityProduct: (product: CartProductProps) => void;
+  handleAddQuantityProduct: (id: string) => void;
+  handleDecreaseQuantityProduct: (id: string) => void;
   handleRemoveProduct: (id: string) => void;
   handleSetQuantity: (id: string, quantity: number) => void;
   getProductQuantity: (id: string) => number;
@@ -66,9 +66,9 @@ export function CartProvider({ children }: CartProviderProps) {
     localStorage.setItem("HoMarket", JSON.stringify([...products, newProduct]));
   }
 
-  function handleAddQuantityProduct(product: CartProductProps) {
+  function handleAddQuantityProduct(id: string) {
     const updatedProducts = products.map((item) => {
-      if (item.id !== product.id) {
+      if (item.id !== id) {
         return item;
       }
 
@@ -82,8 +82,10 @@ export function CartProvider({ children }: CartProviderProps) {
     localStorage.setItem("HoMarket", JSON.stringify(updatedProducts));
   }
 
-  function handleDecreaseQuantityProduct(product: CartProductProps) {
-    if (product.quantity <= 0) {
+  function handleDecreaseQuantityProduct(id: string) {
+    const product = products.find((product) => product.id === id);
+
+    if (product && product.quantity <= 0) {
       const filteredProducts = products.filter(
         (item) => item.id !== product.id
       );
@@ -92,7 +94,7 @@ export function CartProvider({ children }: CartProviderProps) {
     }
 
     const updatedProducts = products.map((item) => {
-      if (item.id !== product.id) {
+      if (item.id !== id) {
         return item;
       }
 

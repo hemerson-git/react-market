@@ -1,4 +1,5 @@
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
+import Link from "next/link";
 import { ReactNode } from "react";
 
 type Props = {
@@ -27,7 +28,7 @@ export function Menu({ children, items, className }: Props) {
 
         {items.map((item, index) => (
           <DropdownMenu.Item key={`item-${index}`}>
-            <a href={item.label}>{item.label}</a>
+            <Link href={item.label}>{item.label}</Link>
           </DropdownMenu.Item>
         ))}
 

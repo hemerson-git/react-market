@@ -7,6 +7,7 @@ import * as Dialog from "@radix-ui/react-dialog";
 import { useCart } from "../../hooks/cartHook";
 import { Menu } from "./Menu";
 import { Cart } from "../Cart";
+import Link from "next/link";
 
 const menuItems = [
   {
@@ -80,7 +81,7 @@ export function Header() {
             <ul className="flex flex-col gap-2 md:flex-row">
               {menuItems.map((menuItem, index) => (
                 <li key={`item-${index}`}>
-                  <a href={menuItem.href}>{menuItem.label}</a>
+                  <Link href={menuItem.href}>{menuItem.label}</Link>
                 </li>
               ))}
             </ul>
