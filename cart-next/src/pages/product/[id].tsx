@@ -35,7 +35,7 @@ export default function Product() {
           setProduct(() => apiProduct);
         }
       } catch (error) {
-        console.warn(error);
+        console.error(error);
       } finally {
         setLoading(false);
       }
