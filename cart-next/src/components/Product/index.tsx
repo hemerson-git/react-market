@@ -51,7 +51,7 @@ export function Product({
       <footer className="flex flex-col mt-4">
         <Button
           onClick={() => {
-            handleAddProduct({ description, id, imageURL, name, price });
+            handleAddProduct(id);
             setIsToastVisible(true);
           }}
         >

@@ -10,63 +10,6 @@ import { API } from "@/services/api";
 
 const inter = Inter({ subsets: ["latin"] });
 
-// const products = [
-//   {
-//     id: "1",
-//     name: "Product 1",
-//     description:
-//       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto delectus excepturi nisi non necessitatibus" +
-//       "officiis harum vero tenetur vel autem blanditiis quas expedita est ad, quod dolor. Suscipit, est doloribus?",
-//     price: 20000,
-//     imageURL: "/camera.jpg",
-//   },
-//   {
-//     id: "2",
-//     name: "Product 2",
-//     description:
-//       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto delectus excepturi nisi non necessitatibus" +
-//       "officiis harum vero tenetur vel autem blanditiis quas expedita est ad, quod dolor. Suscipit, est doloribus?",
-//     price: 30000,
-//     imageURL: "/mobile.jpg",
-//   },
-//   {
-//     id: "3",
-//     name: "Product 3",
-//     description:
-//       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto delectus excepturi nisi non necessitatibus" +
-//       "officiis harum vero tenetur vel autem blanditiis quas expedita est ad, quod dolor. Suscipit, est doloribus?",
-//     price: 40050,
-//     imageURL: "/headset.jpg",
-//   },
-//   {
-//     id: "4",
-//     name: "Product 4",
-//     description:
-//       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto delectus excepturi nisi non necessitatibus" +
-//       "officiis harum vero tenetur vel autem blanditiis quas expedita est ad, quod dolor. Suscipit, est doloribus?",
-//     price: 45000,
-//     imageURL: "/laptop.jpg",
-//   },
-//   {
-//     id: "5",
-//     name: "Product 5",
-//     description:
-//       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto delectus excepturi nisi non necessitatibus" +
-//       "officiis harum vero tenetur vel autem blanditiis quas expedita est ad, quod dolor. Suscipit, est doloribus?",
-//     price: 50075,
-//     imageURL: "/microfone.jpg",
-//   },
-//   {
-//     id: "6",
-//     name: "Product 6",
-//     description:
-//       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto delectus excepturi nisi non necessitatibus" +
-//       "officiis harum vero tenetur vel autem blanditiis quas expedita est ad, quod dolor. Suscipit, est doloribus?",
-//     price: 100000,
-//     imageURL: "/console.jpg",
-//   },
-// ];
-
 export default function Home() {
   const [products, setProducts] = useState<ProductProps[]>([]);
 

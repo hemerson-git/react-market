@@ -32,7 +32,6 @@ export default function Product() {
         if (id) {
           const response = await API.get(`/products/${id}`);
           const apiProduct = response.data;
-          console.log(apiProduct);
           setProduct(() => apiProduct);
         }
       } catch (error) {

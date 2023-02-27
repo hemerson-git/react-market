@@ -38,14 +38,16 @@ export function CartProvider({ children }: CartProviderProps) {
   useEffect(() => {
     (async () => {
       try {
-        if (!apiProducts) {
+        if (!apiProducts.length) {
           const response = await API.get("/products");
           const data = response.data as CartProductProps[];
           setApiProducts(data);
         }
-      } catch (err) {}
+      } catch (err) {
+        console.error(err);
+      }
     })();
-  });
+  }, [apiProducts]);
 
   function handleToggleCart() {
     setIsCartVisible(!isCartVisible);
@@ -68,7 +70,8 @@ export function CartProvider({ children }: CartProviderProps) {
     try {
       const product = apiProducts.find((apiProduct) => apiProduct.id === id);
 
-      console.log(product);
+      console.log("PRODUCT", product);
+      console.log("ID", id);
 
       if (product) {
         const newProduct = {
@@ -79,13 +82,11 @@ export function CartProvider({ children }: CartProviderProps) {
           quantity: 1,
         };
 
-        if (newProduct) {
-          setProducts((prevItems) => [...prevItems, newProduct]);
-          localStorage.setItem(
-            "HoMarket",
-            JSON.stringify([...products, newProduct])
-          );
-        }
+        setProducts((prevItems) => [...prevItems, newProduct]);
+        localStorage.setItem(
+          "HoMarket",
+          JSON.stringify([...products, newProduct])
+        );
       }
     } catch (err) {
       console.error("Something went wrong!");
@@ -97,6 +98,7 @@ export function CartProvider({ children }: CartProviderProps) {
 
     if (!quantity) {
       handleAddProduct(id);
+      return;
     }
 
     if (quantity) {
