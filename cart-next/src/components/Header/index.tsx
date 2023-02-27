@@ -43,7 +43,9 @@ export function Header() {
       ref={headerRef}
     >
       <div className="container px-14 flex justify-between py-6">
-        <h2 className="text-bold text-xl select-none uppercase">Logo</h2>
+        <h2 className="text-bold text-xl select-none uppercase">
+          <Link href="/">Logo</Link>
+        </h2>
 
         <DropdownMenu.Root open={isMenuVisible} onOpenChange={setIsMenuVisible}>
           <DropdownMenu.Trigger

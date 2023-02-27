@@ -7,11 +7,16 @@ import { Product, ProductProps } from "@/components/Product";
 import { Footer } from "@/components/Footer";
 import { Hero } from "@/components/Hero";
 import { API } from "@/services/api";
+import { useSession } from "next-auth/react";
+import { SignIn } from "./signin";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
   const [products, setProducts] = useState<ProductProps[]>([]);
+  const session = useSession();
+
+  console.log("SESSION:", session);
 
   useEffect(() => {
     (async () => {
@@ -19,6 +24,10 @@ export default function Home() {
       setProducts(response.data);
     })();
   }, []);
+
+  if (session.status !== "authenticated") {
+    return <SignIn />;
+  }
 
   return (
     <>
