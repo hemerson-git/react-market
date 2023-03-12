@@ -12,7 +12,7 @@ export default function App({
     <CartProvider>
       <SessionProvider session={session}>
         <div className="bg-zinc-900 min-h-screen text-gray-50">
-          {session && <Header />}
+          <Header />
           <Component {...pageProps} />
         </div>
       </SessionProvider>

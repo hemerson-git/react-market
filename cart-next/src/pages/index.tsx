@@ -1,33 +1,31 @@
 import { useEffect, useState } from "react";
 import Head from "next/head";
 import { Inter } from "@next/font/google";
+import { Fade } from "react-awesome-reveal";
+import { useSession } from "next-auth/react";
 
 // COMPONENTS
 import { Product, ProductProps } from "@/components/Product";
 import { Footer } from "@/components/Footer";
 import { Hero } from "@/components/Hero";
 import { API } from "@/services/api";
-import { useSession } from "next-auth/react";
-import { SignIn } from "./signin";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
   const [products, setProducts] = useState<ProductProps[]>([]);
-  const session = useSession();
-
-  console.log("SESSION:", session);
 
   useEffect(() => {
     (async () => {
       const response = await API.get("/products");
       setProducts(response.data);
     })();
-  }, []);
 
-  if (session.status !== "authenticated") {
-    return <SignIn />;
-  }
+    console.log(
+      "clientId: " + process.env.NEXT_PUBLIC_GOOGLE_CLIENT,
+      "clientSecret: " + process.env.NEXT_PUBLIC_GOOGLE_KEY
+    );
+  }, []);
 
   return (
     <>
@@ -45,14 +43,16 @@ export default function Home() {
             <h2 className="text-bold text-center text-2xl mb-6">Products</h2>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 gap-y-8 mb-10">
-              {products.map((product) => (
-                <Product product={product} key={product.id} />
-              ))}
+              <Fade cascade duration={400}>
+                {products.map((product) => (
+                  <Product product={product} key={product.id} />
+                ))}
+              </Fade>
             </div>
           </div>
         </main>
 
-        <aside>{/* <Cart /> */}</aside>
+        <aside id="menu">{/* <Cart /> */}</aside>
 
         <Footer />
       </>

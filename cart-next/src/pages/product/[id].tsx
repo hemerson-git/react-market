@@ -11,6 +11,7 @@ import { ProductProps } from "@/components/Product";
 
 // Services
 import { API } from "@/services/api";
+import Head from "next/head";
 
 export default function Product() {
   const router = useRouter();
@@ -47,71 +48,77 @@ export default function Product() {
   }
 
   return (
-    <div className="container px-14 mx-auto pt-6">
-      <h2 className="font-bold text-2xl mb-4">{product?.name}</h2>
+    <>
+      <Head>
+        <title>{product.name} | Next Cart</title>
+      </Head>
 
-      <div className="grid md:grid-cols-2 gap-3">
-        {product?.imageURL && (
-          <Image
-            src={product.imageURL}
-            width={640}
-            height={400}
-            alt={product.name}
-            className="rounded-md max-w-full"
-          />
-        )}
+      <div className="container px-14 mx-auto pt-6">
+        <h2 className="font-bold text-2xl mb-4">{product?.name}</h2>
 
-        <div className="flex flex-col gap-4 ">
-          <div>
-            <h3 className="font-bold text-xl">Description</h3>
-            <p>{product?.description}</p>
-          </div>
+        <div className="grid md:grid-cols-2 gap-3">
+          {product?.imageURL && (
+            <Image
+              src={product.imageURL}
+              width={640}
+              height={400}
+              alt={product.name}
+              className="rounded-md max-w-full"
+            />
+          )}
 
-          <div>
-            <h3 className="font-bold text-xl">Quantity</h3>
-
-            <div className="flex py-2">
-              <button
-                type="button"
-                className="rounded-l-md bg-purple-400 p-1"
-                onClick={() => handleDecreaseQuantityProduct(product.id)}
-              >
-                <Minus size={24} className="text-gray-50" />
-              </button>
-
-              <input
-                type="number"
-                value={getProductQuantity(product.id)}
-                onChange={(e) =>
-                  handleSetQuantity(product.id, Number(e.target.value))
-                }
-                className="text-zinc-900 text-center"
-              />
-
-              <button
-                type="button"
-                className="rounded-r-md bg-purple-400 p-1"
-                onClick={() => handleAddQuantityProduct(product.id)}
-              >
-                <Plus size={24} className="text-gray-50" />
-              </button>
+          <div className="flex flex-col gap-4 ">
+            <div>
+              <h3 className="font-bold text-xl">Description</h3>
+              <p>{product?.description}</p>
             </div>
-          </div>
 
-          <div>
-            <h3 className="font-bold text-xl">Price</h3>
-            <span>
-              {getParsedPrice(
-                product.price * (getProductQuantity(product.id) || 1)
-              )}
-            </span>
-          </div>
+            <div>
+              <h3 className="font-bold text-xl">Quantity</h3>
 
-          <Button onClick={() => handleAddProduct(product.id)}>
-            Order Product
-          </Button>
+              <div className="flex py-2">
+                <button
+                  type="button"
+                  className="rounded-l-md bg-purple-400 p-1"
+                  onClick={() => handleDecreaseQuantityProduct(product.id)}
+                >
+                  <Minus size={24} className="text-gray-50" />
+                </button>
+
+                <input
+                  type="number"
+                  value={getProductQuantity(product.id)}
+                  onChange={(e) =>
+                    handleSetQuantity(product.id, Number(e.target.value))
+                  }
+                  className="text-zinc-900 text-center"
+                />
+
+                <button
+                  type="button"
+                  className="rounded-r-md bg-purple-400 p-1"
+                  onClick={() => handleAddQuantityProduct(product.id)}
+                >
+                  <Plus size={24} className="text-gray-50" />
+                </button>
+              </div>
+            </div>
+
+            <div>
+              <h3 className="font-bold text-xl">Price</h3>
+              <span>
+                {getParsedPrice(
+                  product.price * (getProductQuantity(product.id) || 1)
+                )}
+              </span>
+            </div>
+
+            <Button onClick={() => handleAddProduct(product.id)}>
+              Order Product
+            </Button>
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }

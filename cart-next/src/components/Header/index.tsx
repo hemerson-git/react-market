@@ -1,4 +1,4 @@
-import { RefObject, useEffect, useRef, useState } from "react";
+import { RefObject, useRef, useState } from "react";
 import { ShoppingCart, List, X } from "phosphor-react";
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import * as Dialog from "@radix-ui/react-dialog";
@@ -8,6 +8,7 @@ import { useCart } from "../../hooks/cartHook";
 import { Menu } from "./Menu";
 import { Cart } from "../Cart";
 import Link from "next/link";
+import { SignIn } from "@/pages/signIn";
 
 const menuItems = [
   {
@@ -104,6 +105,13 @@ export function Header() {
             </Dialog.Trigger>
 
             <Cart />
+
+            <div
+              role="separator"
+              className="hidden md:flex w-px h-4 bg-gray-50"
+            />
+
+            <SignIn />
           </Dialog.Root>
         </div>
       </div>
