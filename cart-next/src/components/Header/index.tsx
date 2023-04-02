@@ -17,7 +17,7 @@ const menuItems = [
   },
   {
     label: "Products",
-    href: "/",
+    href: "/products",
   },
   {
     label: "About",

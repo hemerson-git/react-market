@@ -23,7 +23,7 @@ export function Toast({
         open={isOpen}
         onOpenChange={onOpenChange}
         className="
-          fixed bottom-4 right-4 flex flex-col p-4 gap-2 z-[200] 
+          fixed bottom-4 right-4 flex flex-col p-4 gap-2 z-[500] 
           w-[320px] max-w-[100vh] bg-green-200 text-gray-700 rounded-md
         "
       >

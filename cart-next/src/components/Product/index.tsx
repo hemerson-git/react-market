@@ -40,13 +40,13 @@ export function Product({
         <span className="text-sm flex line-clamp-3">{description}</span>
         <span className="">{getParsedPrice(price)}</span>
 
+      </Link>
         <Toast
           title="Success"
           description={`${name} added to cart!`}
           isOpen={isToastVisible}
           onOpenChange={setIsToastVisible}
         />
-      </Link>
 
       <footer className="flex flex-col mt-4">
         <Button
