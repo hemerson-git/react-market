@@ -1,22 +1,29 @@
 import * as PrimitiveSelect from '@radix-ui/react-select';
+import * as Select from '@/components/Select';
 
 import { Product, ProductProps } from '@/components/Product';
 import { TextInput } from '@/components/TextInput';
 import { API } from '@/services/api';
 import { useEffect, useState } from 'react';
-import { Select } from '@/components/Select';
+
+type CategoryProps = {
+  name: string;
+  id: number;
+};
 
 export default function Products() {
   const [products, setProducts] = useState<ProductProps[]>([]);
   const [filter, setFilter] = useState('');
+  const [categories, setCategories] = useState<CategoryProps[]>([]);
 
   const filteredProducts = products.filter((product) => product.name.toLowerCase().includes(filter.toLowerCase()));
   const visibleProducts = filteredProducts.length ? filteredProducts : products;
 
   useEffect(() => {
     (async () => {
-      const response = await API.get('/products');
-      setProducts(response.data);
+      const [response1, response2] = await Promise.all([API.get('/products'), API.get('/categories')]);
+      setProducts(response1.data);
+      setCategories(response2.data);
     })();
   }, []);
 
@@ -32,6 +39,16 @@ export default function Products() {
             value={filter}
             onChange={(e) => setFilter(e.target.value)}
           />
+
+          <h3 className="font-bold text-xl mb-3 mt-4">Categories</h3>
+
+          <div>
+            {categories.map((category) => (
+              <div key={category.id}>
+                <span>{category.name}</span>
+              </div>
+            ))}
+          </div>
         </div>
       </aside>
 
@@ -39,16 +56,17 @@ export default function Products() {
         <div className="flex mb-4 items-center justify-between">
           <h1 className="text-3xl font-bold">Products</h1>
           <PrimitiveSelect.Root defaultValue="name">
-            <PrimitiveSelect.Trigger>
-              <PrimitiveSelect.Value />
-              <PrimitiveSelect.Icon />
-            </PrimitiveSelect.Trigger>
+            <Select.Trigger placeholder="Sort-by" defaultValue="name" />
 
-            <Select>
-              <PrimitiveSelect.Item value="name">Name</PrimitiveSelect.Item>
-              <PrimitiveSelect.Item value="price">Price</PrimitiveSelect.Item>
-              <PrimitiveSelect.Item value=""></PrimitiveSelect.Item>
-            </Select>
+            <Select.Select>
+              <PrimitiveSelect.Item className="flex relative select-none" value="name">
+                Name
+              </PrimitiveSelect.Item>
+              <PrimitiveSelect.Item className="flex relative select-none" value="price">
+                Price
+              </PrimitiveSelect.Item>
+              <PrimitiveSelect.Item className="flex relative select-none" value=""></PrimitiveSelect.Item>
+            </Select.Select>
           </PrimitiveSelect.Root>
         </div>
 

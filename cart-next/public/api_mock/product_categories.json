@@ -1,0 +1,36 @@
+{
+  "categories": [
+    {
+      "id": 1,
+      "name": "camera"
+    },
+    {
+      "id": 2,
+      "name": "smartphone"
+    },
+    {
+      "id": 3,
+      "name": "music"
+    },
+    {
+      "id": 4,
+      "name": "headphones"
+    },
+    {
+      "id": 5,
+      "name": "laptop"
+    },
+    {
+      "id": 6,
+      "name": "microphone"
+    },
+    {
+      "id": 7,
+      "name": "console"
+    },
+    {
+      "id": 8,
+      "name": "gaming"
+    }
+  ]
+}

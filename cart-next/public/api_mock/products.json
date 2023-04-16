@@ -5,42 +5,82 @@
       "name": "Product 1",
       "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto delectus excepturi nisi non necessitatibus officiis harum vero tenetur vel autem blanditiis quas expedita est ad, quod dolor. Suscipit, est doloribus?",
       "price": 20000,
-      "imageURL": "/camera.jpg"
+      "imageURL": "/camera.jpg",
+      "categories": [1]
     },
     {
       "id": "2",
       "name": "Product 2",
       "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto delectus excepturi nisi non necessitatibus officiis harum vero tenetur vel autem blanditiis quas expedita est ad, quod dolor. Suscipit, est doloribus?",
       "price": 30000,
-      "imageURL": "/mobile.jpg"
+      "imageURL": "/mobile.jpg",
+      "categories": [2]
     },
     {
       "id": "3",
       "name": "Product 3",
       "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto delectus excepturi nisi non necessitatibus officiis harum vero tenetur vel autem blanditiis quas expedita est ad, quod dolor. Suscipit, est doloribus?",
       "price": 40050,
-      "imageURL": "/headset.jpg"
+      "imageURL": "/headset.jpg",
+      "categories": [3, 4]
     },
     {
       "id": "4",
       "name": "Product 4",
       "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto delectus excepturi nisi non necessitatibus officiis harum vero tenetur vel autem blanditiis quas expedita est ad, quod dolor. Suscipit, est doloribus?",
       "price": 45000,
-      "imageURL": "/laptop.jpg"
+      "imageURL": "/laptop.jpg",
+      "categories": [5]
     },
     {
       "id": "5",
       "name": "Product 5",
       "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto delectus excepturi nisi non necessitatibus officiis harum vero tenetur vel autem blanditiis quas expedita est ad, quod dolor. Suscipit, est doloribus?",
       "price": 50075,
-      "imageURL": "/microfone.jpg"
+      "imageURL": "/microfone.jpg",
+      "categories": [3, 6]
     },
     {
       "id": "6",
       "name": "Product 6",
       "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto delectus excepturi nisi non necessitatibus officiis harum vero tenetur vel autem blanditiis quas expedita est ad, quod dolor. Suscipit, est doloribus?",
       "price": 100000,
-      "imageURL": "/console.jpg"
+      "imageURL": "/console.jpg",
+      "categories": [7, 8]
+    }
+  ],
+  "categories": [
+    {
+      "id": 1,
+      "name": "camera"
+    },
+    {
+      "id": 2,
+      "name": "smartphone"
+    },
+    {
+      "id": 3,
+      "name": "music"
+    },
+    {
+      "id": 4,
+      "name": "headphones"
+    },
+    {
+      "id": 5,
+      "name": "laptop"
+    },
+    {
+      "id": 6,
+      "name": "microphone"
+    },
+    {
+      "id": 7,
+      "name": "console"
+    },
+    {
+      "id": 8,
+      "name": "gaming"
     }
   ]
 }
