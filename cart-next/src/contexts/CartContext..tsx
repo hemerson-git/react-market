@@ -1,7 +1,6 @@
-import { API } from "@/services/api";
-import { createContext, ReactNode, useEffect, useState } from "react";
-import { CartProduct, CartProductProps } from "../components/Cart/Product";
-import { ProductProps } from "../components/Product";
+import { API } from '@/services/api';
+import { createContext, ReactNode, useEffect, useState } from 'react';
+import { CartProductProps } from '../components/Cart/Product';
 
 type CartContextProps = {
   handleToggleCart: () => void;
@@ -13,6 +12,7 @@ type CartContextProps = {
   handleRemoveProduct: (id: string) => void;
   handleSetQuantity: (id: string, quantity: number) => void;
   getProductQuantity: (id: string) => number;
+  removeAll: () => void;
 };
 
 export const CartContext = createContext({} as CartContextProps);
@@ -27,7 +27,7 @@ export function CartProvider({ children }: CartProviderProps) {
   const [apiProducts, setApiProducts] = useState<CartProductProps[]>([]);
 
   useEffect(() => {
-    const items = localStorage.getItem("HoMarket");
+    const items = localStorage.getItem('HoMarket');
 
     if (items) {
       const parsedItems = JSON.parse(items) as CartProductProps[];
@@ -39,7 +39,7 @@ export function CartProvider({ children }: CartProviderProps) {
     (async () => {
       try {
         if (!apiProducts.length) {
-          const response = await API.get("/products");
+          const response = await API.get('/products');
           const data = response.data as CartProductProps[];
           setApiProducts(data);
         }
@@ -57,21 +57,17 @@ export function CartProvider({ children }: CartProviderProps) {
     const hasProduct = products.find((item) => item.id === id);
 
     if (hasProduct) {
-      setProducts(
-        products.map((item) =>
-          item.id === id ? { ...item, quantity: item.quantity + 1 } : item
-        )
-      );
+      setProducts(products.map((item) => (item.id === id ? { ...item, quantity: item.quantity + 1 } : item)));
 
-      localStorage.setItem("HoMarket", JSON.stringify(products));
+      localStorage.setItem('HoMarket', JSON.stringify(products));
       return;
     }
 
     try {
       const product = apiProducts.find((apiProduct) => apiProduct.id === id);
 
-      console.log("PRODUCT", product);
-      console.log("ID", id);
+      console.log('PRODUCT', product);
+      console.log('ID', id);
 
       if (product) {
         const newProduct = {
@@ -83,13 +79,10 @@ export function CartProvider({ children }: CartProviderProps) {
         };
 
         setProducts((prevItems) => [...prevItems, newProduct]);
-        localStorage.setItem(
-          "HoMarket",
-          JSON.stringify([...products, newProduct])
-        );
+        localStorage.setItem('HoMarket', JSON.stringify([...products, newProduct]));
       }
     } catch (err) {
-      console.error("Something went wrong!");
+      console.error('Something went wrong!');
     }
   }
 
@@ -114,7 +107,7 @@ export function CartProvider({ children }: CartProviderProps) {
       });
 
       setProducts(updatedProducts);
-      localStorage.setItem("HoMarket", JSON.stringify(updatedProducts));
+      localStorage.setItem('HoMarket', JSON.stringify(updatedProducts));
     }
   }
 
@@ -138,13 +131,13 @@ export function CartProvider({ children }: CartProviderProps) {
     });
 
     setProducts(updatedProducts);
-    localStorage.setItem("HoMarket", JSON.stringify(updatedProducts));
+    localStorage.setItem('HoMarket', JSON.stringify(updatedProducts));
   }
 
   function handleRemoveProduct(id: string) {
     const updatedProducts = products.filter((item) => item.id !== id);
     setProducts(updatedProducts);
-    localStorage.setItem("HoMarket", JSON.stringify(updatedProducts));
+    localStorage.setItem('HoMarket', JSON.stringify(updatedProducts));
   }
 
   function handleSetQuantity(id: string, quantity: number) {
@@ -162,12 +155,17 @@ export function CartProvider({ children }: CartProviderProps) {
     });
 
     setProducts(updatedProducts);
-    localStorage.setItem("HoMarket", JSON.stringify(updatedProducts));
+    localStorage.setItem('HoMarket', JSON.stringify(updatedProducts));
   }
 
   function getProductQuantity(id: string) {
     const selectedProduct = products.find((product) => product.id === id);
     return selectedProduct?.quantity || 0;
+  }
+
+  function removeAll() {
+    setProducts([]);
+    localStorage.removeItem('HoMarket');
   }
 
   return (
@@ -182,6 +180,7 @@ export function CartProvider({ children }: CartProviderProps) {
         handleRemoveProduct,
         handleSetQuantity,
         getProductQuantity,
+        removeAll,
       }}
     >
       {children}
